@@ -1,0 +1,13 @@
+## Read https://hub.docker.com/r/bitnami/apache/
+version: '2'
+services:
+  apache:
+    image: 'bitnami/apache:2.4'
+    ports:
+      - '81:8080'
+      #- '443:443'
+    volumes:
+      #- ./cert:/usr/local/apache2/conf/ ## Rename to xxx.crt to server.xxx
+      - ./htdocs:/app
+     # - /path/to/my_vhost.conf:/vhosts/my_vhost.conf:ro
+     # - APACHE_HTTP_PORT_NUMBER=8081
