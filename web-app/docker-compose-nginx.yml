@@ -1,0 +1,23 @@
+## lihat dokumentasi ke sini https://gitlab.com/ric_harvey/nginx-php-fpm/-/tree/master
+version: '3.7'
+services:
+  nginx:
+    ##image: nginx:alpine
+    image: richarvey/nginx-php-fpm:latest
+    container_name: nginx
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "82:80"
+      #- "443:443"
+    volumes:
+      - ./htdocs:/var/www/html
+      - ./nginx/conf.d/:/etc/nginx/conf.d/
+      - ./nginx/ssl/:/etc/nginx/ssl/
+    networks:
+      - traefik-gateway
+
+networks:
+  traefik-gateway:
+    external:
+       name: jds-dev-network
